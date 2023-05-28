@@ -3,6 +3,7 @@ package kitchen;
 public class Cup {
     private String liquidName;
     private short  liquidVolume;
+    private short  maxVolume = 600;
 
     public Cup () {}
 
@@ -28,11 +29,19 @@ public class Cup {
     }
 
     public void setLiquidVolume(short liquidVolume) {
-        if ( liquidVolume > 0 && liquidVolume <= 600 ) {
+        if ( liquidVolume >= 0 && liquidVolume <= getMaxVolume() ) {
         this.liquidVolume = liquidVolume;
         } else {
-            System.out.println("Maximum 600 ml units available. Try again!");
+            System.out.println("Maximum " + getMaxVolume() + " ml units available. Try again!");
         }
+    }
+
+    public short getMaxVolume() {
+        return maxVolume;
+    }
+
+    public void setMaxVolume(short maxVolume) {
+        this.maxVolume = maxVolume;
     }
 
     public String toString() {
@@ -46,7 +55,5 @@ public class Cup {
 
         return out;
     }
-
-
 
 }
