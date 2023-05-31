@@ -73,9 +73,18 @@ public class Liquid {
         return a;
     }
 
+    public String stringVolume () {
+        String outVolume = String.format("%-4s", volume) + " ml of";
+        return outVolume;
+    }
+
+    public String stringName () {
+        String outName   = String.format("%-5s", name);
+        return outName;
+    }
+
     public String toString() {
-        String out = "Name: " + name + "\nVolume: " + volume + " ml\nTemperature: " + temperature + " Celsius\n";
-        return out;
+        return stringVolume() + " " + stringName ();
     }
 
 }

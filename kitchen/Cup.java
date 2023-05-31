@@ -1,57 +1,43 @@
 package kitchen;
 
+import world.Liquid;
+
 public class Cup {
-    private String liquidName;
-    private short  liquidVolume;
-    private short  maxVolume = 600;
+    private Liquid liquid;
+    public final short  MAX_VOLUME = 600;
 
-    public Cup () {}
+    public Cup () {
 
-    public Cup (String liquidName, short  liquidVolume) {
-        setLiquidName(liquidName);
-        setLiquidVolume(liquidVolume);
     }
 
-    public String getLiquidName() {
-        return liquidName;
+    public Liquid getLiquid() {
+        return liquid;
     }
 
-    public void setLiquidName(String liquidName) {
-        if ( liquidName.equals("Water") || liquidName.equals("Milk") || liquidName.equals("Tea") ) {
-        this.liquidName = liquidName;
+    public void setLiquid(Liquid liquid) {
+        if ( liquid.getVolume() <= MAX_VOLUME) {
+            this.liquid = liquid;
         } else {
-            System.out.println("You can choose betwwen Water / Milk / Tea. Try again!");
+            System.out.println("The object of type \"Cup\" can have max 600 ml volume. Please set less!");
         }
-    }
-
-    public short getLiquidVolume() {
-        return liquidVolume;
-    }
-
-    public void setLiquidVolume(short liquidVolume) {
-        if ( liquidVolume >= 0 && liquidVolume <= getMaxVolume() ) {
-        this.liquidVolume = liquidVolume;
-        } else {
-            System.out.println("Maximum " + getMaxVolume() + " ml units available. Try again!");
-        }
-    }
-
-    public short getMaxVolume() {
-        return maxVolume;
-    }
-
-    public void setMaxVolume(short maxVolume) {
-        this.maxVolume = maxVolume;
     }
 
     public String toString() {
-
-        String out = 
-        "+~~~~~~~~~~~~~~~~~+  \n" +
-        " \\   " + String.format("%-3s", liquidVolume) + " ml of   /  \n" +
-        "  \\     " + String.format("%-5s", liquidName)+ "   /   \n" +
+        String liquidStringVolume;
+        String liquidStringName;
+        if (this.liquid == null) {
+            liquidStringVolume = "   empty  ";
+            liquidStringName   = "     ";
+        } else {
+            liquidStringVolume = liquid.stringVolume();
+            liquidStringName   = liquid.stringName();
+        }
+        String out =
+        "+-----------------+  \n" +
+        " \\   " + liquidStringVolume + "  /  \n" +
+        "  \\    " + liquidStringName + "    /   \n" +
         "   \\           /    \n" +
-        "    \\_________/     \n" ;;
+        "    \\_________/     \n" ;
 
         return out;
     }

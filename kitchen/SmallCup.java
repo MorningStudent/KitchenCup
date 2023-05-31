@@ -1,19 +1,16 @@
 package kitchen;
 
+import world.Liquid;
+
 public class SmallCup extends Cup {
 
-    public SmallCup (String liquidName, short  liquidVolume) {
-        super(liquidName, liquidVolume);
-    }
+    public final short  MAX_VOLUME = 250;
 
-    @Override
-    public void setLiquidVolume(short liquidVolume) {
-        super.setMaxVolume((short)250);
-        if ( liquidVolume >= 0 && liquidVolume <= getMaxVolume() ) {
-        super.setLiquidVolume(liquidVolume);
+    public void setLiquid(Liquid liquid) {
+        if ( liquid.getVolume() <= MAX_VOLUME) {
+            super.setLiquid(liquid);
         } else {
-            System.out.println("Maximum " + getMaxVolume() + " ml units available. Try again!");
+            System.out.println("The object of type \"SmallCup\" can have max 250 ml volume. Please set less!");
         }
-        super.setMaxVolume((short)600);
     }
 }
