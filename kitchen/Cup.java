@@ -5,9 +5,18 @@ import world.Liquid;
 public class Cup {
     private Liquid liquid;
     public final short  MAX_VOLUME = 600;
+    public final String  CLASS_NAME = "\"Cup\"";
 
     public Cup () {
 
+    }
+
+    public short getMaxVolume() {
+        return MAX_VOLUME;
+    }
+
+    public String getClassName() {
+        return CLASS_NAME;
     }
 
     public Liquid getLiquid() {
@@ -15,10 +24,16 @@ public class Cup {
     }
 
     public void setLiquid(Liquid liquid) {
-        if ( liquid.getVolume() <= MAX_VOLUME) {
+        if ( liquid.getVolume() <= getMaxVolume()) {
             this.liquid = liquid;
         } else {
-            System.out.println("The object of type \"Cup\" can have max 600 ml volume. Please set less!");
+            System.out.println("The object of type " + getClassName() + " can have max " + getMaxVolume() + " ml volume. Please set less!");
+        }
+    }
+
+    public void addVolumeInCup(int addVolume) {
+        if (liquid.getVolume() < getMaxVolume() && addVolume <= (getMaxVolume() - liquid.getVolume())) {
+            liquid.setVolume(liquid.getVolume() + addVolume);
         }
     }
 
@@ -41,5 +56,4 @@ public class Cup {
 
         return out;
     }
-
 }

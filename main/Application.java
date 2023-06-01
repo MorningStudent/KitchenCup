@@ -8,14 +8,14 @@ import world.Liquid;
 public class Application {
     public static void main(String[] args) {
         
-        Liquid liqB = new Liquid("Milk", 500, (byte)30);
+        Liquid liqB = new Liquid("Milk", 200, (byte)30);
 
-        Cup standardCup = new Cup();
+        Cup smallCupA = new SmallCup();
 
-        standardCup.setLiquid(liqB);
-        liqB.setVolume( liqB.getVolume() + 50 );
+        smallCupA.setLiquid(liqB);
+        smallCupA.addVolumeInCup(50);
 
-        System.out.println(standardCup);
+        System.out.println(smallCupA);
 
     }
 }
